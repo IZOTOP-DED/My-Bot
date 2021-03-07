@@ -20,10 +20,10 @@ bot.on('message', (message) => {
             if(i.id == message.channel.id) return;
             translate(message.content, {from: translateMap[message.channel.id], to: i.lang}).then(res => {
                 bot.channels.cache.get(i.id).fetchWebhooks().then((item) => {
-                    item.random().send(res.text, {
-                            username: message.member.nickname ?? message.author.username,
-                            avatarURL: message.author.displayAvatarURL(),
-                            ...(!!message.attachments && {files: message.attachments.array().map(att => ({attachment: att.url, name: att.name}))})
+                    item.random().send(res.text ?? '', {
+                        username: message.member.nickname ?? message.author.username,
+                        avatarURL: message.author.displayAvatarURL(),
+                        ...(!!message.attachments && {files: message.attachments.array().map(att => ({attachment: att.url, name: att.name}))})
                     })
                 })        
             })
