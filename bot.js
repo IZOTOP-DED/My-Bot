@@ -23,6 +23,7 @@ bot.on('message', (message) => {
                     item.random().send(res.text, {
                             username: message.member.nickname ?? message.author.username,
                             avatarURL: message.author.displayAvatarURL(),
+                            ...(!!message.attachments && {files: message.attachments.array().map(att => {attachment: att.url, name: })})
                     })
                 })        
             })
