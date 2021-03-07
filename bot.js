@@ -23,7 +23,7 @@ bot.on('message', (message) => {
                     item.random().send(res.text, {
                             username: message.member.nickname ?? message.author.username,
                             avatarURL: message.author.displayAvatarURL(),
-                            ...(!!message.attachments && {files: message.attachments.array().map(att => {attachment: att.url, name: })})                         
+                            ...(!!message.attachments && {files: message.attachments.array().map(att => ({attachment: att.url, name: att.name}))})
                     })
                 })        
             })
@@ -31,4 +31,4 @@ bot.on('message', (message) => {
         
     }
 })
-bot.login('ODE3MDU2OTQ3MDg5NzAyOTUy.YED9lA.TlZ-m3nPvJGppvVcExK5wkihiIk');
+bot.login(process.env.BOT_TOKEN);
